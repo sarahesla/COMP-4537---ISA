@@ -1,0 +1,22 @@
+{
+  "name": "isa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarahesla/COMP-4537---ISA.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sarahesla/COMP-4537---ISA/issues"
+  },
+  "homepage": "https://github.com/sarahesla/COMP-4537---ISA#readme",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}
