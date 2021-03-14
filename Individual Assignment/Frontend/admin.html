@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+
+<h1>Questions</h1>
+<hr>
+<h3>Existing Questions</h3>
+<!-- existing questions here -->
+<hr>
+
+<button id="add-question">Add a Question</button>
+
+<div id="new-question">
+  <form action="/addQuestion" method="post">
+    <textarea id="question-text"></textarea>
+    <br>
+    <input type="radio" id="radio1" name="radio1" value="" checked/>
+    <input type="text" id="answer1" name="answer1" />
+    <br>
+    <input type="radio" id="radio2" name="radio2" value=""/>
+    <input type="text" id="answer3" name="answer2" />
+    <br>
+    <br>
+    <button class="addAnswer">Add Potential Answer</button>
+    <br>
+    <input type="submit">
+  </form>
+</div>
+
+</body>
+</html>

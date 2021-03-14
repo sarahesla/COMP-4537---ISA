@@ -28,6 +28,19 @@ stonk.get("/questions", (req, res) => {
   }
 });
 
+stonk.post("/addQuestion", (req, res) => {
+  try {
+    let addQuestion = "INSERT INTO questions (question) VALUES (req.question-text);";
+    dbConnection.query(addQuestion, function(err, result, fields) {
+      stonk.json(JSON.stringify(result, 200));
+    });
+  }
+
+  catch(e) {
+    stonk.html("400", 400);
+  }
+})
+
 dbConnection.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");

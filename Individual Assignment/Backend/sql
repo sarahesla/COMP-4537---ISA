@@ -1,0 +1,14 @@
+CREATE TABLE `questions` (
+  `id` INT NOT NULL,
+  `question` VARCHAR(255) DEFAULT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE `options` (
+  `optionID` INT NOT NULL,
+  `questionID` INT NOT NULL,
+  `answer` VARCHAR(255) DEFAULT NULL,
+  `isCorrect` BIT DEFAULT 0,
+  PRIMARY KEY(optionID),
+  CONSTRAINT fk_has_question FOREIGN KEY(questionID) REFERENCES questions(id)
+);
