@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/functions.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async function(event) {
+        let result = await getQuestions();
+        console.log(result);
+        let questionsDiv = document.getElementById("questions");
+
+        for(let i = 0; i < result.length; i+=2) {
+          let title = document.createElement("h4");
+          title.innerHTML = result[i].question;
+          questionsDiv.appendChild(title);
+
+          for(let k = 0; k <= 1; k++) {
+            let option = document.createElement("input");
+            let optionText = document.createElement("label");
+            option.type = "radio";
+            option.name = i;
+            option.id = result[i+k].answer;
+            optionText.innerHTML = result[i+k].answer;
+
+            questionsDiv.appendChild(option);
+            questionsDiv.appendChild(optionText);
+         }
+       }
+      });
+      </script>
+</head>
+<body>
+
+<h1>STUDENT | Questions</h1>
+<hr>
+<div id="questions">
+  </div>
+<!-- existing questions here -->
+<hr>
+
+<button id="submit-answers">Submit Answers</button>
+
+<br><br>
+
+
+</body>
+</html>

@@ -5,79 +5,8 @@
     <title>Admin</title>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    <script src="./js/functions.js"></script>
     <script>
-      const BASE_URL = "http://localhost:8080";
-      function sendData() {
-        return new Promise(async (resolve, reject) =>{
-            try{
-              let question = document.getElementById("question-text").value;
-              let isCorrect = [];
-              let options = [];
-
-              for(let i = 1; i <= 2; i++) {
-                let radio = document.getElementById("radio"+i);
-                let option = document.getElementById("answer"+i).value;
-                options.push(option);
-
-                if (radio.checked) {
-                  isCorrect.push(1);
-                }
-                else {
-                  isCorrect.push(0);
-                }
-              }
-
-              let res = await axios({
-                  method: 'post',
-                  url: BASE_URL + "/addQuestion",
-                  data: {
-                      id: Math.random().toString(36).substring(7),
-                      question: question,
-                      isCorrect: isCorrect,
-                      options: options
-                  },
-                  headers: {
-                      'Access-Control-Allow-Origin': '*',
-                      'Access-Control-Max-Age': 2592000, // 30 days
-                  }
-              })
-              if(res) {
-                  resolve(res);
-                  location.reload();
-                }
-              else
-                  throw res
-          }catch(e){
-              console.log(e)
-              reject("Failed.")
-          }
-      })
-      }
-    </script>
-
-    <script>
-      async function getQuestions() {
-        return new Promise(async (resolve, reject) => {
-          try{
-            let res = await axios({
-                method: 'get',
-                url: BASE_URL + "/questions",
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Max-Age': 2592000, // 30 days
-                }
-            })
-            if(res)
-                resolve(res.data)
-            else
-                throw res
-        }catch(e){
-            console.log(e)
-            reject("Failed.")
-        }
-      });
-      }
       document.addEventListener("DOMContentLoaded", async function(event) {
         let result = await getQuestions();
         console.log(result);
@@ -90,26 +19,21 @@
 
           for(let k = 0; k <= 1; k++) {
             let option = document.createElement("p");
-            option.innerHTML = result[i+k].answer;
+            option.innerHTML = "- " + result[i+k].answer;
+
             if (result[i+k].isCorrect.data[0] == 1) {
+              option.style.display = "inline";
               option.style.backgroundColor = "green";
             }
-            questionsDiv.appendChild(option);
-          }
-        }
+          questionsDiv.appendChild(option);
+         }
+       }
       });
-    </script>
-
-    <script>
-      function unhide() {
-        let div = document.getElementById("new-question");
-        div.style.display = "block";
-      }
     </script>
 </head>
 <body>
 
-<h1>Questions</h1>
+<h1>ADMIN | Questions</h1>
 <hr>
 <h3>Existing Questions</h3>
   <div id="questions">
@@ -122,6 +46,7 @@
 <br><br>
 
 <div id="new-question" style="display:none">
+  <h4>New Question</h4>
   <textarea id="question-text"></textarea>
   <br>
   <input type="radio" id="radio1" name="radio" value="" checked/>
@@ -129,6 +54,7 @@
   <br>
   <input type="radio" id="radio2" name="radio" value=""/>
   <input type="text" id="answer2" name="answer2" />
+  <br>
   <br>
   <br>
   <input type="submit" onclick="sendData()">

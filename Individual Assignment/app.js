@@ -5,16 +5,20 @@ const path = require("path");
 const appDir = path.join(path.dirname(require.main.filename), "/");
 
 const dbConnection = mysql.createConnection({
-  host: "localhost",
-  user: "admin",
-  password: "admin",
-  database: "isa-quiz"
+  host: "s11.fcomet.com",
+  user: "sarahesl_admin",
+  password: "thisisapassword",
+  database: "sarahesl_isa-quiz"
 });
 
 let stonk = new Stonk();
-stonk.files(appDir);
 
 // routes
+stonk.get("/", (req, res) => {
+  console.log(appDir);
+  stonk.serveFile(res, "./Frontend/index.html");
+})
+
 stonk.get("/questions", (req, res) => {
   try {
     let query = "SELECT * FROM questions JOIN options ON questions.id = options.questionID";

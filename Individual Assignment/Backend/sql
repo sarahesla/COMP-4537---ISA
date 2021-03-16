@@ -1,12 +1,12 @@
 CREATE TABLE `questions` (
-  `id` INT NOT NULL,
+  `id` VARCHAR(255) NOT NULL,
   `question` VARCHAR(255) DEFAULT NULL,
   PRIMARY KEY(id)
 );
 
 CREATE TABLE `options` (
-  `optionID` INT NOT NULL,
-  `questionID` INT NOT NULL,
+  `optionID` INT AUTO_INCREMENT NOT NULL,
+  `questionID` VARCHAR(255) NOT NULL,
   `answer` VARCHAR(255) DEFAULT NULL,
   `isCorrect` BIT DEFAULT 0,
   PRIMARY KEY(optionID),
