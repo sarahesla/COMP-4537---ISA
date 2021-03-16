@@ -17,7 +17,7 @@ let stonk = new Stonk();
 stonk.get("/", (req, res) => {
   console.log(appDir);
   stonk.serveFile(res, "./Frontend/index.html");
-})
+});
 
 stonk.get("/questions", (req, res) => {
   try {
